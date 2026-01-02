@@ -1443,3 +1443,493 @@ footer {
   background:#fff;
   box-shadow:0 0 20px rgba(229,9,20,0.9);
 }
+
+#stLoader,
+#duplicateOverlay {
+  display: none;
+}
+/* 🔴 FIX FORM INTERACTION ISSUE */
+.register-bg::after {
+  display: none !important;
+}
+.register-box {
+  position: relative;
+  z-index: 9999;
+}
+
+.register-box select,
+.register-box input {
+  position: relative;
+  z-index: 9999;
+}
+nav {
+  z-index: 10;
+}
+
+.register-section {
+  position: relative;
+  z-index: 20;
+}
+/* 🔧 FIX NAVIGATION CLICK ISSUE */
+#stLoader,
+#duplicateOverlay {
+  pointer-events: none;
+}
+#stLoader.active,
+#duplicateOverlay.active {
+  display: flex;
+  pointer-events: auto;
+}
+/* 🔥 ALLOW NAV CLICKS */
+#stLoader,
+#duplicateOverlay {
+  pointer-events: none;
+}
+
+/* enable clicks ONLY when active */
+#stLoader.active,
+#duplicateOverlay.active {
+  display: flex;
+  pointer-events: auto;
+}
+/* 🔥 Disable VHS overlay on register page */
+.register-bg::after {
+  display: none !important;
+}
+/* 🔥 FIX CLICK BLOCKING */
+#stLoader,
+#duplicateOverlay {
+  pointer-events: none;
+}
+
+#stLoader.active,
+#duplicateOverlay.active {
+  display: flex;
+  pointer-events: auto;
+}
+nav {
+  position: fixed;
+  z-index: 10001;
+}
+/* ================= FINAL MOBILE SAFETY FIX ,the fix starts here ,dont touch the above styling================= */
+@media (max-width: 600px) {
+
+  .register-box{
+    max-width: 92%;
+    padding: 28px 20px;
+  }
+
+  .register-title{
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+
+  .event-option span{
+    font-size: 15px;
+    white-space: normal;
+  }
+
+  .team-fields{
+    margin-left: 0;
+  }
+
+  .team-fields input,
+  .team-fields select{
+    font-size: 14px;
+  }
+
+  .payment-box{
+    padding: 12px;
+  }
+
+  .qr-box img{
+    width: 180px !important;
+  }
+
+  nav{
+    flex-direction: row;
+    padding: 12px;
+  }
+
+  nav a{
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
+}
+/* ================= MOBILE ALIGNMENT FIX ================= */
+@media (max-width: 600px) {
+
+  /* ---------- HERO SECTION ---------- */
+  .hero {
+    padding-top: 100px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .college-name,
+  .affiliation,
+  .department,
+  .presents {
+    letter-spacing: 1.5px;
+    font-size: 0.9rem;
+  }
+
+  .event-title-img {
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .hero-tagline {
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    padding: 0 10px;
+  }
+
+  /* ---------- COUNTDOWN ---------- */
+  .countdown {
+    width: 100%;
+    max-width: 260px;
+    margin: 14px auto;
+    font-size: 0.9rem;
+  }
+
+  /* ---------- ENTER BUTTON ---------- */
+  .register-btn {
+    width: 100%;
+    max-width: 280px;
+    margin: 16px auto 0;
+    display: block;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+  }
+
+  /* ---------- EVENTS PAGE ---------- */
+  section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  h2, h1 {
+    text-align: center;
+  }
+
+  .event-cache {
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  /* ---------- NAV BAR ---------- */
+  nav {
+    padding: 12px 14px;
+  }
+
+  nav div a {
+    margin-left: 12px;
+    font-size: 14px;
+  }
+
+}
+/* ================= FLUID RESPONSIVE TYPOGRAPHY FIX ================= */
+
+/* GLOBAL MOBILE RESET */
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    padding: 10px 14px;
+  }
+
+  nav a {
+    font-size: clamp(12px, 3.5vw, 14px);
+    margin-left: 12px;
+  }
+
+  /* ---------- HERO SECTION ---------- */
+  .hero {
+    padding-top: 90px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .college-name {
+    font-size: clamp(0.75rem, 3.5vw, 0.95rem);
+    letter-spacing: 1.5px;
+  }
+
+  .affiliation {
+    font-size: clamp(0.65rem, 3vw, 0.85rem);
+    letter-spacing: 1px;
+  }
+
+  .department {
+    font-size: clamp(0.7rem, 3.2vw, 0.9rem);
+    letter-spacing: 1.2px;
+  }
+
+  .presents {
+    font-size: clamp(0.65rem, 3vw, 0.85rem);
+    letter-spacing: 2px;
+  }
+
+  /* EVENT TITLE IMAGE */
+  .event-title-img {
+    width: min(90vw, 300px);
+  }
+
+  /* TAGLINE */
+  .hero-tagline {
+    font-size: clamp(0.65rem, 3vw, 0.85rem);
+    letter-spacing: 1.2px;
+    padding: 0 10px;
+  }
+
+  /* ---------- COUNTDOWN ---------- */
+  .countdown {
+    width: 100%;
+    max-width: 240px;
+    font-size: clamp(0.7rem, 3vw, 0.9rem);
+    margin: 12px auto;
+  }
+
+  /* ---------- ENTER BUTTON ---------- */
+  .register-btn {
+    width: 100%;
+    max-width: 260px;
+    font-size: clamp(0.7rem, 3.2vw, 0.9rem);
+    letter-spacing: 2px;
+    padding: 12px 0;
+    margin: 16px auto 0;
+    display: block;
+  }
+
+  /* ---------- SECTION HEADINGS ---------- */
+  h1, h2 {
+    font-size: clamp(1.2rem, 6vw, 1.6rem);
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  /* ---------- EVENT DESCRIPTION TEXT ---------- */
+  .event-cache {
+    font-size: clamp(0.8rem, 3.6vw, 0.95rem);
+    line-height: 1.65;
+    text-align: left;
+    padding: 0;
+    margin: 10px auto 20px;
+  }
+
+}
+/* ================= FINAL DEVICE-BASED TEXT ALIGNMENT FIX ================= */
+
+@media (max-width: 768px) {
+
+  /* ---------- GLOBAL ---------- */
+  body {
+    overflow-x: hidden;
+  }
+
+  section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* ---------- HEADINGS (CENTERED) ---------- */
+  h1, h2, h3 {
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  /* ---------- HERO TEXT ---------- */
+  .college-name,
+  .affiliation,
+  .department,
+  .presents,
+  .hero-tagline {
+    text-align: center;
+    letter-spacing: 1.2px;
+  }
+
+  /* ---------- EVENT TITLES ---------- */
+  .event-heading {
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  /* ---------- PARAGRAPH / CONTENT TEXT ---------- */
+  .event-cache,
+  .event-cache p {
+    text-align: justify;
+    text-justify: inter-word;
+
+    font-size: clamp(0.85rem, 3.8vw, 1rem);
+    line-height: 1.7;
+
+    margin: 14px auto 22px;
+    padding: 0;
+    letter-spacing: 0.3px;
+    word-spacing: 1px;
+  }
+
+  /* ---------- PREVENT ODD LINE BREAKS ---------- */
+  .event-cache span {
+    white-space: normal;
+  }
+
+  /* ---------- BUTTON ---------- */
+  .register-btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    justify-content: space-between;
+  }
+
+  nav a {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+  }
+
+}
+/* =========================================================
+   FINAL PROFESSIONAL ALIGNMENT & JUSTIFICATION FIX
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* ---------- GENERAL LAYOUT ---------- */
+  body {
+    overflow-x: hidden;
+  }
+
+  section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* ---------- MAIN EVENT HEADINGS ---------- */
+  .event-heading,
+  .technical-title,
+  .non-technical-title,
+  h2 {
+    text-align: center !important;
+    letter-spacing: 2px;
+    margin: 30px 0 18px;
+  }
+
+  /* ---------- TECH / NON-TECH HEADINGS TEXT ---------- */
+  .event-heading {
+    font-size: clamp(1.3rem, 6vw, 1.6rem);
+    text-transform: uppercase;
+  }
+
+  /* ---------- EVENT CONTENT / DESCRIPTION ---------- */
+  .event-cache {
+    text-align: justify !important;
+    text-justify: inter-word;
+
+    font-size: clamp(0.85rem, 3.8vw, 1rem);
+    line-height: 1.75;
+
+    margin: 0 auto 24px;
+    padding: 0;
+
+    letter-spacing: 0.25px;
+    word-spacing: 1px;
+  }
+
+  /* ---------- FIX INLINE GLITCH SPANS ---------- */
+  .event-cache span {
+    white-space: normal !important;
+    display: inline;
+  }
+
+  /* ---------- HERO TEXT (CENTERED) ---------- */
+  .college-name,
+  .affiliation,
+  .department,
+  .presents,
+  .hero-tagline {
+    text-align: center;
+    letter-spacing: 1.2px;
+  }
+
+  /* ---------- BUTTON CENTERING ---------- */
+  .register-btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  /* ---------- NAV BAR ---------- */
+  nav {
+    padding: 12px 16px;
+    justify-content: space-between;
+  }
+
+  nav a {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+  }
+}
+/* =========================================================
+   FINAL FIX – TECH & NON-TECH HEADINGS (CENTERED + RESPONSIVE)
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* Technical / Non-Technical headings */
+  .event-heading {
+    text-align: center;
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
+    letter-spacing: 1.5px;
+    margin: 28px 0 16px;
+  }
+
+}
+/* =========================================================
+   MOBILE FIX – LOTUS LOGO VISIBILITY
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* Push hero content down safely */
+  .hero {
+    padding-top: calc(100px + env(safe-area-inset-top));
+  }
+
+  /* Ensure logo scales properly */
+  .college-logo {
+    max-width: 70px;
+    height: auto;
+    margin-bottom: 12px;
+  }
+
+}

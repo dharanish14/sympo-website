@@ -74,13 +74,7 @@ function createSpore() {
 let sporeInterval=setInterval(createSpore, 600);
 
   /* ================= NETFLIX STYLE ROW SCROLL ================= */
-  document.querySelectorAll(".st-row-wrapper").forEach(row => {
-    let isScrolling = false;
-
-    
-
-      setTimeout(() => isScrolling = false, 200);
-    }, { passive: false });
+  
   });
 
 
@@ -182,14 +176,8 @@ document.querySelectorAll(".event-cache").forEach(p => {
   }, { threshold: 0.4 }).observe(p);
 });
 
-document.querySelectorAll(".st-row-wrapper").forEach(wrapper => {
-  wrapper.addEventListener("wheel", (e) => {
-    if (window.innerWidth < 768) return; // disable on mobile
 
-    e.preventDefault();
-    wrapper.scrollLeft += e.deltaY;
-  }, { passive: false });
-});
+
 
 // ================= UPSIDE DOWN SOUND + ANIMATION =================
 const clockSound = new Audio("assets/vecna_s_clock.mp3");
@@ -262,8 +250,8 @@ const fade = setInterval(() => {
 
   /* ================= TEAM EVENTS ================= */
   document.querySelectorAll('input[data-team="true"]').forEach(cb => {
-
-    const container = cb.closest("label").nextElementSibling;
+const container = cb.closest(".event-option").nextElementSibling;
+if (!container) return;
     const min = Number(cb.dataset.min);
     const max = Number(cb.dataset.max);
 
@@ -334,11 +322,12 @@ const form = document.querySelector(".register-box form");
   updateAmount();
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-document.getElementById("stLoader").style.display = "flex";
+document.getElementById("stLoader").classList.add("active");
+
 
 
   const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbyoGzVbJevrZ5Z7HgCToYdPchZ0DQ5s_nMPYpQyGCfxYxLI_m0BTsWwWlE0nRU-CGQU/exec";
+    "https://script.google.com/macros/s/AKfycbzbAcFByiDU1hFwOZOqTbjAYpVGNvatNuFhU107Qr0ojtTDA6rL-1iVylGwStAj_yD-/exec";
 
   const surprise = document.getElementById("surpriseEvent");
   surprise.value = surprise.checked ? "YES" : "NO";
@@ -398,6 +387,11 @@ document.getElementById("stLoader").style.display = "flex";
         addHidden(`event_${i}_m${m}_mobile`, inputs[idx++]?.value || "");
       }
     });
+    if (!form.checkValidity()) {
+  form.reportValidity();
+  return;
+}
+
 
    form.action = SCRIPT_URL;
 form.method = "POST";
@@ -415,3 +409,6 @@ form.submit();
     form.appendChild(i);
   }
 });
+function enterUpsideDown() {
+  window.location.href = "events.html";
+}
