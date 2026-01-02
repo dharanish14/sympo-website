@@ -2139,62 +2139,57 @@ body {
 }
 
 /* =========================================================
-   📱 FINAL REAL-PHONE SAFE GLITCH (PRODUCTION FIX)
+   📱 REAL PHONE TEXT OVERLAP KILLER (FINAL)
    ========================================================= */
 @media (max-width: 768px) {
 
-  /* Remove layered glitch (real phone bug source) */
-  .glitch::before,
-  .glitch::after {
-    display: none !important;
-    content: none !important;
+  /* 1️⃣ STOP ALL PARENT TRANSFORMS THAT BREAK TEXT */
+  #world,
+  .safe-zoom,
+  .upside-down,
+  section,
+  main {
+    transform: none !important;
+    animation: none !important;
+    filter: none !important;
   }
 
-  /* Single-layer glitch that LOOKS the same */
+  /* 2️⃣ KEEP GLITCH BUT MAKE IT FLOW-SAFE */
   .glitch {
+    display: inline-block;
     position: relative;
-    display: inline;
     white-space: normal;
 
-    animation: phone-glitch 1.6s infinite steps(2);
-
-    text-shadow:
-      1px 0 #ff003c,
-     -1px 0 #00e5ff,
-      0 0 6px rgba(255, 0, 60, 0.6);
+    line-height: 1.9 !important;
+    letter-spacing: 0.4px !important;
   }
 
-  @keyframes phone-glitch {
-    0% {
-      opacity: 1;
-      text-shadow: 1px 0 #ff003c, -1px 0 #00e5ff;
-    }
-    25% {
-      opacity: 0.85;
-      text-shadow: 2px 0 #ff003c, -2px 0 #00e5ff;
-    }
-    50% {
-      opacity: 1;
-      text-shadow: -1px 0 #ff003c, 1px 0 #00e5ff;
-    }
-    75% {
-      opacity: 0.9;
-      text-shadow: 2px 0 #ff003c, -1px 0 #00e5ff;
-    }
-    100% {
-      opacity: 1;
-      text-shadow: 1px 0 #ff003c, -1px 0 #00e5ff;
-    }
+  /* 3️⃣ ALIGN GLITCH LAYERS PERFECTLY */
+  .glitch::before,
+  .glitch::after {
+    position: absolute;
+    inset: 0;
+    line-height: 1.9 !important;
   }
 
-  /* Text safety for real devices */
+  /* 4️⃣ FORCE TEXT LAYOUT STABILITY */
   p,
+  span,
   li,
   .event-cache,
   .hero-tagline {
-    line-height: 1.75;
-    letter-spacing: 0.4px;
-    word-break: break-word;
-    overflow-wrap: break-word;
+    transform: none !important;
+    animation: none !important;
+
+    line-height: 1.85 !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* 5️⃣ GPU RASTER FIX (CRITICAL) */
+  * {
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 }
