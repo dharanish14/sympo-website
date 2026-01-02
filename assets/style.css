@@ -2138,3 +2138,67 @@ body {
   }
 }
 
+/* =========================================================
+   📱 FINAL MOBILE GLITCH – ZERO OVERLAP (GUARANTEED)
+   ========================================================= */
+@media (max-width: 768px) {
+
+  /* ❌ Kill duplicate glitch layers */
+  .glitch::before,
+  .glitch::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  /* ✅ Single-layer glitch effect */
+  .glitch {
+    position: relative;
+    display: inline;
+    white-space: normal;
+
+    animation: mobile-glitch-flicker 1.8s infinite;
+
+    text-shadow:
+      1px 0 #ff003c,
+     -1px 0 #00e5ff,
+      0 0 6px rgba(255, 0, 60, 0.6);
+  }
+
+  @keyframes mobile-glitch-flicker {
+    0% {
+      opacity: 1;
+      text-shadow: 1px 0 #ff003c, -1px 0 #00e5ff;
+    }
+    20% {
+      opacity: 0.85;
+      text-shadow: 2px 0 #ff003c, -2px 0 #00e5ff;
+    }
+    40% {
+      opacity: 1;
+      text-shadow: -1px 0 #ff003c, 1px 0 #00e5ff;
+    }
+    60% {
+      opacity: 0.9;
+      text-shadow: 2px 0 #ff003c, -1px 0 #00e5ff;
+    }
+    80% {
+      opacity: 1;
+      text-shadow: 1px 0 #ff003c, -2px 0 #00e5ff;
+    }
+    100% {
+      opacity: 1;
+      text-shadow: 1px 0 #ff003c, -1px 0 #00e5ff;
+    }
+  }
+
+  /* Text safety */
+  p,
+  li,
+  .event-cache,
+  .hero-tagline {
+    line-height: 1.75;
+    letter-spacing: 0.4px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
