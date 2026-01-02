@@ -1946,3 +1946,32 @@ nav {
   }
 
 }
+/* =========================================================
+   UPSIDE DOWN EFFECT – SAFE & RESTORED
+   ========================================================= */
+
+/* Apply animation to main container, not body */
+main.upside-down {
+  animation: flipWorld 1.6s ease-in-out forwards;
+  transform-origin: center;
+}
+
+/* Animation */
+@keyframes flipWorld {
+  0% {
+    transform: rotate(0deg);
+    filter: invert(0);
+  }
+  100% {
+    transform: rotate(180deg);
+    filter: invert(1) hue-rotate(180deg);
+  }
+}
+
+/* Mobile-safe lighter version */
+@media (max-width: 768px) {
+  main.upside-down {
+    animation-duration: 1.2s;
+    filter: invert(1);
+  }
+}
