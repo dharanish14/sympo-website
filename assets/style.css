@@ -2301,5 +2301,43 @@ body {
     }
   }
 }
+/* =========================================
+   SIMPLE MOBILE CONSISTENCY FIX (ADD LAST)
+   ========================================= */
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Lock viewport height behavior */
+body {
+  min-height: 100vh;
+}
+
+/* Stable fullscreen background */
+.video-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+/* Kill mobile transform glitches */
+@media (max-width: 768px) {
+  * {
+    transform: none !important;
+  }
+}
+/* 🔒 LOCK TEXT RENDERING SAME ON ALL PHONES */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  font-kerning: normal;
+  font-variant-ligatures: none;
+}
+
 
 
