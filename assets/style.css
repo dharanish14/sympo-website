@@ -107,7 +107,7 @@ a {
 
 /* HAMBURGER */
 .hamburger {
-  width: 22px;
+  width: 20px;
   height: 22px;
   display: flex;
   flex-direction: column;
