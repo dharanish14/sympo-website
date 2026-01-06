@@ -82,106 +82,41 @@ a {
 }
 
 /* ================= NAVBAR ================= */
-.navbar {
-  pointer-events: auto;
+.nav-logo img {
+  height: 40px;
+  width: auto;
+  filter: drop-shadow(0 0 8px rgba(229, 9, 20, 0.6));
+}
+nav {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 14px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(6px);
-  z-index: 10000; /* 🔥 VERY IMPORTANT */
-}
-
-/* LEFT */
-.nav-left {
   display: flex;
-  align-items: center;
-}
-
-/* RIGHT */
-.nav-right {
-  display: flex;
-  align-items: center;
-}
-
-/* HAMBURGER */
-.hamburger {
-  width: 10px;
-  height: 22px;
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  cursor: pointer;
-  z-index: 10000; /* above overlays */
+  z-index: 100;
 }
 
-.hamburger span {
-  height: 2.5px;
+nav a {
+  margin-left: 20px;
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: var(--red);
+  transition: 0.3s;
+}
+
+nav a:hover::after {
   width: 100%;
-  background: #fff;
-  border-radius: 3px;
-  box-shadow: 0 0 6px rgba(255, 0, 0, 0.7);
-  transition: 0.3s ease;
-}
-
-/* MOBILE MENU */
-.mobile-menu {
-  position: fixed;
-  top: 60px;
-  right: -100%;
-  width: 100%;
-  height: calc(100vh - 60px);
-
-  background: rgba(0,0,0,0.95);
-  backdrop-filter: blur(8px);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 40px;
-
-  transition: right 0.4s ease;
-  z-index: 9999;
-}
-
-.mobile-menu a {
-  color: #ff2a2a;
-  font-size: 1.3rem;
-  margin: 18px 0;
-  text-decoration: none;
-}
-
-.mobile-menu.active {
-  right: 0;
-}
-
-/* HAMBURGER ANIMATION */
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translateY(7px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-7px);
-}
-/* SHOW MENU */
-.mobile-menu.active {
-  right: 0;
-}
-
-/* DESKTOP */
-@media (min-width: 769px) {
-  .hamburger,
-  .mobile-menu {
-    display: none;
-  }
 }
 
 /* ================= HERO ================= */
