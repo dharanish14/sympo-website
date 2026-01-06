@@ -395,7 +395,8 @@ document.getElementById("stLoader").classList.add("active");
   form.reportValidity();
   return;
 }
-
+const food = document.querySelector('input[name="foodPreference"]:checked');
+addHidden("food_preference", food ? food.value : "");
 
    form.action = SCRIPT_URL;
 form.method = "POST";
