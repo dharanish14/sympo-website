@@ -37,6 +37,7 @@ body {
   height: 100svh;
   z-index: -10;
   overflow: hidden;
+  pointer-events:none;
 }
 
 .video-bg video {
@@ -49,6 +50,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
+  pointer-events:none;
   /*background: rgba(0,0,0,0.65);*/
 }
 
@@ -57,7 +59,7 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
- 
+  pointer-events:none;
   /*background: repeating-linear-gradient(
     to bottom,
     rgba(255,255,255,0.02),
@@ -81,6 +83,7 @@ a {
 
 /* ================= NAVBAR ================= */
 .navbar {
+  pointer-events: auto;
   position: fixed;
   top: 0;
   width: 100%;
@@ -90,7 +93,7 @@ a {
   align-items: center;
   background: rgba(0,0,0,0.6);
   backdrop-filter: blur(6px);
-  z-index: 9999; /* 🔥 VERY IMPORTANT */
+  z-index: 10000; /* 🔥 VERY IMPORTANT */
 }
 
 /* LEFT */
@@ -129,26 +132,29 @@ a {
 .mobile-menu {
   position: fixed;
   top: 60px;
-  right: -260%;
-  width: 240px;
+  right: -100%;
+  width: 100%;
   height: calc(100vh - 60px);
+
   background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(8px);
+
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  align-items: center;
+  padding-top: 40px;
+
   transition: right 0.4s ease;
-  z-index: 9998;
+  z-index: 9999;
 }
 
 .mobile-menu a {
   color: #ff2a2a;
+  font-size: 1.3rem;
+  margin: 18px 0;
   text-decoration: none;
-  padding: 14px 0;
-  font-size: 1.1rem;
-  border-bottom: 1px solid rgba(255,42,42,0.3);
 }
 
-/* ACTIVE MENU */
 .mobile-menu.active {
   right: 0;
 }
