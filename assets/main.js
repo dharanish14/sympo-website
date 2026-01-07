@@ -30,30 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => title.classList.add("visible"), 1000);
   }
 
-  /* ================= UPSIDE DOWN SPORES ================= */
-  const MAX_SPORES = 35;
-let activeSpores = 0;
-
-function createSpore() {
-  if (activeSpores >= MAX_SPORES) return;
-
-  activeSpores++;
-
-  const spore = document.createElement("div");
-  spore.className = "spore";
-  spore.style.left = Math.random() * 100 + "vw";
-  spore.style.animationDuration = 10 + Math.random() * 10 + "s";
-  spore.style.opacity = 0.3 + Math.random() * 0.5;
-
-  document.body.appendChild(spore);
-
-  setTimeout(() => {
-    spore.remove();
-    activeSpores--;
-  }, 22000);
-}
-
-let sporeInterval=setInterval(createSpore, 600);
 
   /* ================= NETFLIX STYLE ROW SCROLL ================= */
   
