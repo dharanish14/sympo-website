@@ -890,52 +890,6 @@ h1 {
   color: #ddd;
 }
 
-/* ================= EFFECTS ================= */
-.spore, .lightning {
-  position: fixed;
-  pointer-events: none;
-}
-
-/* Spores */
-.spore {
-  width: 10px;
-  height: 10px;
-  background: white;
-  border-radius: 50%;
-  filter: blur(2px);
-  opacity: 0.9;
-  z-index: 1000;
-  animation: spore-float linear infinite;
-}
-
-@keyframes spore-float {
-  from { transform: translateY(110vh); }
-  to { transform: translateY(-20vh); }
-}
-
-/* Lightning */
-.lightning {
-  top: 0;
-  width: 4px;
-  height: 100svh;
-  opacity: 0;
-  z-index: 999;
-}
-
-.lightning.red {
-  background: linear-gradient(to bottom, transparent, red, transparent);
-  box-shadow: 0 0 40px red;
-}
-
-.lightning.blue {
-  background: linear-gradient(to bottom, transparent, #00e5ff, transparent);
-  box-shadow: 0 0 40px #00e5ff;
-}
-
-.glitch {
-  cursor: default;
-}
-
 /* ================= REGISTER PAGE ================= */
 
 /* ================= REGISTER PAGE BACKGROUND ================= */
