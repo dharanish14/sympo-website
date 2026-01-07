@@ -43,7 +43,94 @@ document.querySelectorAll(".event-cache").forEach(p => {
   }, { threshold: 0.4 }).observe(p);
 });
 
+/* ================= STRANGER THINGS LIGHTNING ================= */
 
+function randomZigZag() {
+  let points = ["50% 0%"];
+  let x = 50;
+
+  for (let i = 1; i <= 6; i++) {
+    x += (Math.random() * 30 - 15);
+    x = Math.max(10, Math.min(90, x));
+    points.push(`${x}% ${i * 15}%`);
+  }
+
+  points.push("50% 100%");
+  return polygon(`${points.join(",")}`);
+}
+function createLightningBolt() {
+  const bolt = document.createElement("div");
+
+  // randomly choose color
+  const color = Math.random() > 0.5 ? "red" : "blue";
+  bolt.className = `lightning ${color}`;
+
+  bolt.style.left = Math.random() * 100 + "vw";
+
+  document.body.appendChild(bolt);
+
+  // flash ON
+  setTimeout(() => {
+    bolt.style.opacity = "1";
+  }, 10);
+
+  // flash OFF
+  setTimeout(() => {
+    bolt.style.opacity = "0";
+  }, 140);
+
+  // remove
+  setTimeout(() => {
+    bolt.remove();
+  }, 300);
+}
+setInterval(() => {
+  if (Math.random() > 0.6) {
+    createLightningBolt();
+  }
+}, 2500);
+
+function lightningStorm() {
+  for (let i = 0; i < 3; i++) {
+    setTimeout(createLightningBolt, i * 120);
+  }
+}
+
+setInterval(lightningStorm, 7000);
+
+
+
+/* 5-second thunder storm burst */
+let lightningActive = false;
+
+function thunderStorm() {
+  if (lightningActive) return;
+  lightningActive = true;
+
+  const storm = setInterval(() => {
+    createLightningBolt();
+  }, 350);
+
+  setTimeout(() => {
+    clearInterval(storm);
+    lightningActive = false;
+  }, 3000);
+}
+/* for phone effecf */
+setInterval(thunderStorm, 8000);
+const isMobile = window.innerWidth < 768;
+
+if (isMobile) {
+  clearInterval(sporeInterval);
+  sporeInterval=setInterval(createSpore, 1000); // fewer spores
+}
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    document.body.classList.add("effects-paused");
+  } else {
+    document.body.classList.remove("effects-paused");
+  }
+});
 
 
 // ================= UPSIDE DOWN SOUND + ANIMATION =================
