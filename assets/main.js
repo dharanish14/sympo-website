@@ -16,12 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ================= REVEAL EFFECT ================= */
+  document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(
     ".reveal-logo, .reveal-title, .reveal-tagline, .reveal-countdown"
-  ).forEach((el, i) => {
-    setTimeout(() => el.classList.add("visible"), i * 250);
+  ).forEach(el => {
+    el.classList.add("visible");
   });
-
+});
 
   /* ================= HERO FADE-IN ================= */
   const title = document.querySelector(".fade-title");
