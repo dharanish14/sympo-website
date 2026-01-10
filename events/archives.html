@@ -181,9 +181,29 @@
         </li>
       </div>
     </div>
-  <a href="../register.html">
-    <button class="register-btn">Register for this Event</button>
-  </a>
+  <form
+  action="https://script.google.com/macros/s/AKfycbxqb11UodwHSpNU_tHqNBlA5ol7FmwyLeIt6xApljz03NYUa-ha6GAzu2FdHDxUTh3d/exec"
+  method="POST"
+  style="text-align:center; margin-top:30px;">
+
+  <!-- USER DETAILS (will be filled in register.html & stored in localStorage) -->
+  <input type="hidden" name="fullName">
+  <input type="hidden" name="email">
+  <input type="hidden" name="college">
+  <input type="hidden" name="year">
+  <input type="hidden" name="department">
+
+  <!-- EVENT DETAILS (VERY IMPORTANT) -->
+  <input type="hidden" name="eventCount" value="1">
+
+  <input type="hidden" name="event_name_0" value="Paper Presentation">
+  <input type="hidden" name="event_teamSize_0" value="3">
+
+  <button type="submit" class="register-btn" onclick="fillUserData()">
+    Register for this Event
+  </button>
+</form>
+
 </section>
 <div id="lightning-container"></div>
 <script defer src="../assets/main.js"></script>
