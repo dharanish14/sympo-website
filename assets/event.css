@@ -134,21 +134,21 @@ a {
 /* MOBILE */
 @media (max-width: 768px) {
   .st-nav-inner {
-    gap: 14px;
-    padding: 8px 16px;
+    gap: 12px;
+    padding: 6px 14px;
   }
 
   .st-menu {
-    gap: 12px;
+    gap: 10px;
   }
 
   .st-menu a {
-    font-size: 0.85rem;
+    font-size: 0.80rem;
   }
 
   .st-register {
-    padding: 6px 14px;
-    font-size: 0.85rem;
+    padding: 4px 12px;
+    font-size: 0.80rem;
   }
 }
 
@@ -1218,6 +1218,7 @@ h3, h4 {
     0 0 25px rgba(229, 9, 20, 0.9),
     0 0 45px rgba(229, 9, 20, 0.6);
 }
+
 
 
 
