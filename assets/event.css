@@ -357,6 +357,18 @@ a {
 }
 
 /*====== eleven-bg ======*/
+
+@media (max-width: 600px) {
+  .event-container {
+    margin: 40px 10px;
+    padding: 20px 15px;
+  }
+}
+.event-container {
+  width: 100%;
+  max-width: 900px; /* still limits on large screens */
+}
+
 .eleven-bg {
   min-height: 100vh;
   position: relative;
@@ -411,6 +423,16 @@ a {
 @media (max-width: 768px) {
   .eleven-bg {
     background-attachment: scroll;
+  }
+}
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* already present, keep it */
+}
+@media (max-width: 600px) {
+  .event-container {
+    text-align: left;
+    font-size: 0.95rem;
   }
 }
 
