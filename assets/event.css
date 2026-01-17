@@ -1218,7 +1218,75 @@ h3, h4 {
     0 0 25px rgba(229, 9, 20, 0.9),
     0 0 45px rgba(229, 9, 20, 0.6);
 }
+/* ...existing code... */
 
+/* Enhanced mobile responsiveness and attractiveness for event sections */
+@media (max-width: 768px) {
+  .st-row-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allows cards to wrap to next line if needed */
+    gap: 15px; /* Increased gap for better spacing */
+  }
+  
+  .st-row-track {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Ensures cards fit and wrap on small screens */
+    gap: 15px;
+  }
+  
+  .st-card {
+    flex-shrink: 0;
+    width: 280px; /* Slightly wider for better fit, but still mobile-friendly */
+    max-width: 90vw; /* Prevents overflow on very small screens */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animation */
+  }
+  
+  .st-card:hover {
+    transform: scale(1.05); /* Subtle scale for attractiveness */
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.8); /* Red glow on hover */
+  }
+  
+  .st-overlay {
+    padding: 15px; /* Better padding for readability */
+  }
+  
+  .st-overlay h3 {
+    font-size: 1.1rem; /* Slightly larger for emphasis */
+  }
+  
+  .st-overlay p {
+    font-size: 0.9rem;
+  }
+}
+
+/* General attractiveness enhancements for all screens */
+.st-card {
+  border-radius: 12px; /* Softer corners */
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Deeper shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.st-card:hover {
+  transform: translateY(-5px); /* Lift effect */
+  box-shadow: 0 8px 25px rgba(229, 9, 20, 0.6); /* Attractive red glow */
+}
+
+.st-row-title {
+  font-size: 1.8rem; /* Larger, more prominent titles */
+  text-shadow: 0 0 10px rgba(229, 9, 20, 0.8); /* Subtle glow */
+  margin-bottom: 20px;
+}
+
+.scroll-indicator {
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+/* ...existing code... */
 
 
 
