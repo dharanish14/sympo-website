@@ -4,6 +4,93 @@
   <title>Events | VEC Sympo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+/* ===== Stranger Things / Netflix Theme Enhancements ===== */
+
+/* Global cinematic feel */
+body.events-page {
+  background: #000;
+  color: #e50914;
+  font-family: 'Arial', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Section titles */
+.st-row-title {
+  color: #e50914;
+  text-shadow: 0 0 8px rgba(229, 9, 20, 0.7);
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* Cards glow on hover */
+.st-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.st-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(229, 9, 20, 0.8);
+}
+
+/* Card overlay darker + cinematic */
+.st-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.95),
+    rgba(0,0,0,0.3)
+  );
+}
+
+/* Event cache text */
+.event-cache {
+  max-width: 900px;
+  margin: 60px auto;
+  text-align: center;
+  color: #ddd;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-shadow: 0 0 5px rgba(255,0,0,0.3);
+}
+
+/* Glitch text emphasis */
+.glitch {
+  color: #e50914;
+  position: relative;
+  font-weight: bold;
+}
+
+/* Simple glitch animation */
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  top: 0;
+  color: #ff0033;
+  opacity: 0.6;
+  animation: glitch 1.5s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* Scroll indicator styling */
+.scroll-indicator {
+  color: #e50914;
+  opacity: 0.8;
+}
+
+/* Navbar glow */
+.st-nav {
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+}
+  </style>
 </head>
 <body>
 
@@ -183,5 +270,6 @@
 
 </body>
 </html>
+
 
 
