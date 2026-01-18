@@ -4,93 +4,458 @@
   <title>Events | VEC Sympo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/style.css">
-  <style>
-/* ===== Stranger Things / Netflix Theme Enhancements ===== */
-
-/* Global cinematic feel */
-body.events-page {
-  background: #000;
-  color: #e50914;
-  font-family: 'Arial', sans-serif;
-  letter-spacing: 0.5px;
+  
+<style>
+/* ================= ROOT & GLOBAL ================= */
+:root{
+  --red:#ff1e1e;
+  --dark:#000;
+  --glass:rgba(0,0,0,0.55);
 }
 
-/* Section titles */
-.st-row-title {
-  color: #e50914;
-  text-shadow: 0 0 8px rgba(229, 9, 20, 0.7);
-  font-weight: 800;
-  letter-spacing: 2px;
+body{
+  background:#000;
+  color:#eee;
+  overflow-x:hidden;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Cards glow on hover */
-.st-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* ================= SECTION ================= */
+.st-row{
+  position:relative;
+  padding:80px 0 40px;
 }
 
-.st-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(229, 9, 20, 0.8);
+/* ================= TITLE ================= */
+.st-row-title{
+  font-size:2.2rem;
+  color:var(--red);
+  margin-left:40px;
+  letter-spacing:2px;
+  text-shadow:0 0 18px rgba(255,0,0,.7);
 }
 
-/* Card overlay darker + cinematic */
-.st-overlay {
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.95),
-    rgba(0,0,0,0.3)
-  );
+/* ================= SWIPE INDICATOR ================= */
+.scroll-indicator{
+  position:absolute;
+  right:40px;
+  top:90px;
+  color:#ff5555;
+  font-size:.9rem;
+  opacity:.8;
+  animation:pulse 2s infinite;
 }
 
-/* Event cache text */
-.event-cache {
-  max-width: 900px;
-  margin: 60px auto;
-  text-align: center;
-  color: #ddd;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  text-shadow: 0 0 5px rgba(255,0,0,0.3);
+.scroll-indicator .arrow{
+  margin-left:6px;
 }
 
-/* Glitch text emphasis */
-.glitch {
-  color: #e50914;
-  position: relative;
-  font-weight: bold;
+@keyframes pulse{
+  0%,100%{opacity:.4}
+  50%{opacity:1}
 }
 
-/* Simple glitch animation */
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 2px;
-  top: 0;
-  color: #ff0033;
-  opacity: 0.6;
-  animation: glitch 1.5s infinite;
+/* ================= ROW WRAPPER ================= */
+.st-row-wrapper{
+  position:relative;
+  overflow:hidden;
+  margin-top:30px;
 }
 
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+/* ================= TRACK ================= */
+.st-row-track{
+  display:flex;
+  gap:22px;
+  padding:30px 60px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
 }
 
-/* Scroll indicator styling */
-.scroll-indicator {
-  color: #e50914;
-  opacity: 0.8;
+.st-row-track::-webkit-scrollbar{display:none}
+
+/* ================= CARD ================= */
+.st-card{
+  position:relative;
+  min-width:240px;
+  height:340px;
+  border-radius:18px;
+  overflow:hidden;
+  scroll-snap-align:start;
+  background:#000;
+  text-decoration:none;
+  transform-style:preserve-3d;
+  transition:transform .55s cubic-bezier(.25,.8,.25,1),
+             box-shadow .55s ease;
+  box-shadow:0 0 30px rgba(255,0,0,.15);
 }
 
-/* Navbar glow */
-.st-nav {
-  box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+/* ================= IMAGE ================= */
+.st-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.65) contrast(1.05);
+  transition:transform .7s ease, filter .7s ease;
 }
-  </style>
+
+/* ================= OVERLAY ================= */
+.st-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to top,
+      rgba(0,0,0,.95),
+      rgba(0,0,0,.4),
+      transparent);
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  opacity:0;
+  transition:opacity .45s ease;
+}
+
+.st-overlay h3{
+  color:#ff2b2b;
+  font-size:1.2rem;
+  margin-bottom:6px;
+  text-shadow:0 0 12px rgba(255,0,0,.9);
+}
+
+.st-overlay p{
+  font-size:.85rem;
+  line-height:1.35;
+  color:#ddd;
+}
+
+/* ================= HOVER CINEMA EFFECT ================= */
+.st-card:hover{
+  transform:scale(1.18) translateZ(20px);
+  z-index:20;
+  box-shadow:
+    0 0 40px rgba(255,0,0,.9),
+    0 0 90px rgba(255,0,0,.35);
+}
+
+.st-card:hover img{
+  transform:scale(1.18);
+  filter:brightness(1) contrast(1.1);
+}
+
+.st-card:hover .st-overlay{
+  opacity:1;
+}
+
+/* ================= GLASS EDGE GLOW ================= */
+.st-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:18px;
+  box-shadow:inset 0 0 0 rgba(255,0,0,0);
+  transition:box-shadow .5s ease;
+}
+
+.st-card:hover::after{
+  box-shadow:inset 0 0 40px rgba(255,0,0,.35);
+}
+
+/* ================= PARAGRAPH (NETFLIX TEXT BLOCK) ================= */
+.event-cache{
+  max-width:1100px;
+  margin:40px auto 80px;
+  padding:30px 40px;
+  font-size:1.05rem;
+  line-height:1.7;
+  background:linear-gradient(180deg,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.4));
+  border-radius:20px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 40px rgba(255,0,0,.15);
+}
+
+/* ================= GLITCH EFFECT ================= */
+.glitch{
+  position:relative;
+  color:#ff4444;
+}
+
+.glitch::before,
+.glitch::after{
+  content:attr(data-text);
+  position:absolute;
+  left:0;
+  top:0;
+  opacity:.8;
+}
+
+.glitch::before{
+  color:#0ff;
+  transform:translate(-1px,0);
+  animation:glitch1 2s infinite linear alternate;
+}
+
+.glitch::after{
+  color:#f00;
+  transform:translate(1px,0);
+  animation:glitch2 1.5s infinite linear alternate;
+}
+
+@keyframes glitch1{
+  0%{clip-path:inset(10% 0 80% 0)}
+  50%{clip-path:inset(40% 0 20% 0)}
+  100%{clip-path:inset(70% 0 10% 0)}
+}
+
+@keyframes glitch2{
+  0%{clip-path:inset(80% 0 5% 0)}
+  50%{clip-path:inset(30% 0 50% 0)}
+  100%{clip-path:inset(5% 0 85% 0)}
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .st-card{
+    min-width:200px;
+    height:300px;
+  }
+  .st-row-title{
+    font-size:1.7rem;
+    margin-left:20px;
+  }
+  .st-row-track{
+    padding:20px;
+  }
+}
+</style><style>
+/* ================= ROOT & GLOBAL ================= */
+:root{
+  --red:#ff1e1e;
+  --dark:#000;
+  --glass:rgba(0,0,0,0.55);
+}
+
+body{
+  background:#000;
+  color:#eee;
+  overflow-x:hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ================= SECTION ================= */
+.st-row{
+  position:relative;
+  padding:80px 0 40px;
+}
+
+/* ================= TITLE ================= */
+.st-row-title{
+  font-size:2.2rem;
+  color:var(--red);
+  margin-left:40px;
+  letter-spacing:2px;
+  text-shadow:0 0 18px rgba(255,0,0,.7);
+}
+
+/* ================= SWIPE INDICATOR ================= */
+.scroll-indicator{
+  position:absolute;
+  right:40px;
+  top:90px;
+  color:#ff5555;
+  font-size:.9rem;
+  opacity:.8;
+  animation:pulse 2s infinite;
+}
+
+.scroll-indicator .arrow{
+  margin-left:6px;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:.4}
+  50%{opacity:1}
+}
+
+/* ================= ROW WRAPPER ================= */
+.st-row-wrapper{
+  position:relative;
+  overflow:hidden;
+  margin-top:30px;
+}
+
+/* ================= TRACK ================= */
+.st-row-track{
+  display:flex;
+  gap:22px;
+  padding:30px 60px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+
+.st-row-track::-webkit-scrollbar{display:none}
+
+/* ================= CARD ================= */
+.st-card{
+  position:relative;
+  min-width:240px;
+  height:340px;
+  border-radius:18px;
+  overflow:hidden;
+  scroll-snap-align:start;
+  background:#000;
+  text-decoration:none;
+  transform-style:preserve-3d;
+  transition:transform .55s cubic-bezier(.25,.8,.25,1),
+             box-shadow .55s ease;
+  box-shadow:0 0 30px rgba(255,0,0,.15);
+}
+
+/* ================= IMAGE ================= */
+.st-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.65) contrast(1.05);
+  transition:transform .7s ease, filter .7s ease;
+}
+
+/* ================= OVERLAY ================= */
+.st-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to top,
+      rgba(0,0,0,.95),
+      rgba(0,0,0,.4),
+      transparent);
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  opacity:0;
+  transition:opacity .45s ease;
+}
+
+.st-overlay h3{
+  color:#ff2b2b;
+  font-size:1.2rem;
+  margin-bottom:6px;
+  text-shadow:0 0 12px rgba(255,0,0,.9);
+}
+
+.st-overlay p{
+  font-size:.85rem;
+  line-height:1.35;
+  color:#ddd;
+}
+
+/* ================= HOVER CINEMA EFFECT ================= */
+.st-card:hover{
+  transform:scale(1.18) translateZ(20px);
+  z-index:20;
+  box-shadow:
+    0 0 40px rgba(255,0,0,.9),
+    0 0 90px rgba(255,0,0,.35);
+}
+
+.st-card:hover img{
+  transform:scale(1.18);
+  filter:brightness(1) contrast(1.1);
+}
+
+.st-card:hover .st-overlay{
+  opacity:1;
+}
+
+/* ================= GLASS EDGE GLOW ================= */
+.st-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:18px;
+  box-shadow:inset 0 0 0 rgba(255,0,0,0);
+  transition:box-shadow .5s ease;
+}
+
+.st-card:hover::after{
+  box-shadow:inset 0 0 40px rgba(255,0,0,.35);
+}
+
+/* ================= PARAGRAPH (NETFLIX TEXT BLOCK) ================= */
+.event-cache{
+  max-width:1100px;
+  margin:40px auto 80px;
+  padding:30px 40px;
+  font-size:1.05rem;
+  line-height:1.7;
+  background:linear-gradient(180deg,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.4));
+  border-radius:20px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 40px rgba(255,0,0,.15);
+}
+
+/* ================= GLITCH EFFECT ================= */
+.glitch{
+  position:relative;
+  color:#ff4444;
+}
+
+.glitch::before,
+.glitch::after{
+  content:attr(data-text);
+  position:absolute;
+  left:0;
+  top:0;
+  opacity:.8;
+}
+
+.glitch::before{
+  color:#0ff;
+  transform:translate(-1px,0);
+  animation:glitch1 2s infinite linear alternate;
+}
+
+.glitch::after{
+  color:#f00;
+  transform:translate(1px,0);
+  animation:glitch2 1.5s infinite linear alternate;
+}
+
+@keyframes glitch1{
+  0%{clip-path:inset(10% 0 80% 0)}
+  50%{clip-path:inset(40% 0 20% 0)}
+  100%{clip-path:inset(70% 0 10% 0)}
+}
+
+@keyframes glitch2{
+  0%{clip-path:inset(80% 0 5% 0)}
+  50%{clip-path:inset(30% 0 50% 0)}
+  100%{clip-path:inset(5% 0 85% 0)}
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .st-card{
+    min-width:200px;
+    height:300px;
+  }
+  .st-row-title{
+    font-size:1.7rem;
+    margin-left:20px;
+  }
+  .st-row-track{
+    padding:20px;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -270,6 +635,7 @@ body.events-page {
 
 </body>
 </html>
+
 
 
 
